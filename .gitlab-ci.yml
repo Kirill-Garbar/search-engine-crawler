@@ -31,6 +31,8 @@ test:
     - coverage run -m unittest discover -s tests
     - PROJECT=$(echo $CI_PROJECT_NAME | sed -e 's/search-engine-//g')
     - coverage report --include $PROJECT/$PROJECT.py
+  only:
+    - branches
 
 release:
   stage: release
@@ -60,7 +62,6 @@ review:
   only:
     refs:
       - branches
-    kubernetes: active
   except:
     - master
 
@@ -71,7 +72,6 @@ trigger_deploy:
   only:
     refs:
       - master
-    kubernetes: active    
 
 stop_review:
   stage: cleanup
@@ -88,7 +88,6 @@ stop_review:
   only:
     refs:
       - branches
-    kubernetes: active
   except:
     - master
 
@@ -219,7 +218,7 @@ stop_review:
 
   function trigger_deploy() {
     apk add curl
-    curl -X POST -F token=$CI_SEARCH_ENGINE_DEPLOY_TOKEN -F ref=master http://gitlab-gitlab/api/v4/projects/3/trigger/pipeline
+    curl -X POST -F token=$CI_SEARCH_ENGINE_DEPLOY_TOKEN -F ref=master http://gitlab.$CI_DNS_ZONE/api/v4/projects/4/trigger/pipeline
   }
 
 before_script:
