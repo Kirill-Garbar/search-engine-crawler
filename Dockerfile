@@ -17,4 +17,4 @@ ENV CHECK_INTERVAL 5
 ENV URL https://vitkhab.github.io/search_engine_test_site/
 ENV EXCLUDE_URLS '.*github.com'
 
-ENTRYPOINT ["python", "-u", "crawler/crawler.py", ${URL}]
+ENTRYPOINT ["python", "-u", "crawler/crawler.py", $URL]
