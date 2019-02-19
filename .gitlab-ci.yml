@@ -24,7 +24,7 @@ build:
 test:
   stage: test
   image:
-    name: $CI_REGISTRY/$CI_PROJECT_PATH:${CI_COMMIT_REF_SLUG}
+    name: index.docker.io/$CI_PROJECT_PATH:${CI_COMMIT_REF_SLUG}
   script:
     - python -m unittest discover -s tests
 
