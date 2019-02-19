@@ -14,6 +14,7 @@ ENV RMQ_QUEUE queue_name
 ENV RMQ_USERNAME rmq_user
 ENV RMQ_PASSWORD rmq_pass
 ENV CHECK_INTERVAL 5
+ENV URL https://vitkhab.github.io/search_engine_test_site/
 ENV EXCLUDE_URLS '.*github.com'
 
-ENTRYPOINT ["python", "-u", "crawler/crawler.py", "https://vitkhab.github.io/search_engine_test_site/"]
+ENTRYPOINT ["python", "-u", "crawler/crawler.py", ${URL}]
